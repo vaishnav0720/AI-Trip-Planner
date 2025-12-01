@@ -41,6 +41,48 @@ Travel-Trip AI is an AI-powered trip planning application built with Next.js. It
 ├─ package.json                           # Dependencies and scripts
 └─ middleware.js                          # Clerk middleware
 ```
+## High-Level Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Client Layer                          │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │          Next.js 16 Application (React 19)          │   │
+│  │                                                      │   │
+│  │  • Pages & Routing                                  │   │
+│  │  • Component Library                                │   │
+│  │  • State Management                                 │   │
+│  │  • Client-Side Logic                                │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+                            ↕
+┌─────────────────────────────────────────────────────────────┐
+│                      API Routes Layer                        │
+│  ┌──────────────┐  ┌───────────────┐  ┌─────────────────┐ │
+│  │  AI Model    │  │ Google Places │  │ Google Places   │ │
+│  │  Route       │  │ Photo API     │  │ Detail API      │ │
+│  │              │  │               │  │                 │ │
+│  └──────────────┘  └───────────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+           ↕                  ↕                    ↕
+┌─────────────────┐  ┌─────────────────┐  ┌────────────────┐
+│   OpenAI API    │  │   Google APIs   │  │  Unsplash API  │
+│                 │  │                 │  │                 │
+└─────────────────┘  └─────────────────┘  └────────────────┘
+                            ↕
+                   ┌─────────────────┐
+                   │  Convex Backend │
+                   │  • Database     │
+                   │  • Real-time    │
+                   │  • Mutations    │
+                   └─────────────────┘
+                            ↕
+                   ┌─────────────────┐
+                   │ Clerk Auth      │
+                   │ • Sessions      │
+                   │ • User Mgmt     │
+                   └─────────────────┘
+```
 
 ## Demo
 
