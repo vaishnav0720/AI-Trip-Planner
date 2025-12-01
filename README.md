@@ -45,6 +45,6 @@ Travel-Trip AI is an AI-powered trip planning application built with Next.js. It
 ## Demo
 
 - Run development server: `npm run dev`
-- [Visit Trip-Planner]([ai-trip-planner-aocn.vercel.app](https://ai-trip-planner-aocn.vercel.app/)
+- [Visit Trip-Planner](https://ai-trip-planner-aocn.vercel.app/)
 
 
