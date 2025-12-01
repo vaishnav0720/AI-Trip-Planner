@@ -10,7 +10,7 @@ export default defineSchema({
     author: v.id("users"),
     body: v.string()
   }),
-  tripDetails: defineTable({
+  trip_details: defineTable({
     userId: v.optional(v.id("users")),
     origin: v.string(),
     destination: v.string(),
