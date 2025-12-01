@@ -33,13 +33,20 @@ function Place({ dayPlan }) {
   const firstHotel = Array.isArray(tripdetailId?.hotels) ? tripdetailId.hotels[0] : null;
   const hotelCoords = getCoords(firstHotel);
 
-  const imgForActivity = (activity) => {
+  const activityType = (activity) => {
     const name = (activity?.place_name || '').toString();
     const details = (activity?.place_details || '').toString();
     const raw = `${name} ${details}`.toLowerCase();
     let kw = 'place';
     if (raw.includes('museum') || raw.includes('gallery')) kw = 'museum';
     else if (raw.includes('beach') || raw.includes('shore') || raw.includes('sea') || raw.includes('coast') || raw.includes('bay')) kw = 'beach';
+    else if (raw.includes('hotel') || raw.includes('resort') || raw.includes('inn') || raw.includes('lodg')) kw = 'hotel';
+    return kw;
+  };
+
+  const imgForActivity = (activity) => {
+    const name = (activity?.place_name || '').toString();
+    const kw = activityType(activity);
     const q = name || (activity?.place_address || 'place');
     return `/api/google-place-photo?placeName=${encodeURIComponent(q)}&type=${encodeURIComponent(kw)}`;
   };
@@ -56,6 +63,7 @@ function Place({ dayPlan }) {
               <SafeImage
                 src={imgForActivity(activity)}
                 alt={activity.place_name}
+                type={activityType(activity)}
                 width={1920}
                 height={600}
                 sizes="100vw"
